@@ -13,10 +13,9 @@ spec:
       targetRevision: 1.18.4
       helm:
         valueFiles:
-          - $values/cilium-values.yaml
+          - $values/cluster/cilium/cilium-values.yaml
     - repoURL: https://github.com/k1nho/homelab
       targetRevision: main
-      path: cluster/cilium
       ref: values
   destination:
     server: https://kubernetes.default.svc
