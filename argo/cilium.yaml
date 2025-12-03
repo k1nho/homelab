@@ -6,6 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0" # cluster level priority on sync (https://argo-cd.readthedocs.io/en/stable/user-guide/sync-waves/)
 spec:
+  project: default
   sources:
     - repoURL: https://helm.cilium.io/
       chart: cilium
