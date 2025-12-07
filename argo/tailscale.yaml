@@ -8,6 +8,11 @@ metadata:
 spec:
   project: default
   sources:
+    # Kustomize
+    - repoURL: https://github.com/k1nho/homelab
+      targetRevision: main
+      path: apps/tailscale-operator
+
     - repoURL: https://pkgs.tailscale.com/helmcharts
       chart: tailscale-operator
       targetRevision: 1.90.9
@@ -18,11 +23,6 @@ spec:
     - repoURL: https://github.com/k1nho/homelab
       targetRevision: main
       ref: values
-
-    # Kustomize
-    - repoURL: https://github.com/k1nho/homelab
-      targetRevision: main
-      path: apps/tailscale-operator
 
   destination:
     server: https://kubernetes.default.svc
