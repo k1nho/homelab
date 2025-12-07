@@ -1,0 +1,15 @@
+controllerManager:
+  # Manager Configuration
+  manager:
+    image:
+      repository: infisical/kubernetes-operator
+      tag: ""
+    resources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
+  replicas: 1
+
+installCRDs: true
