@@ -6,13 +6,14 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0" # cluster level priority on sync (https://argo-cd.readthedocs.io/en/stable/user-guide/sync-waves/)
 spec:
+  project: default
   sources:
     - repoURL: https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts/
       chart: secrets-operator
       targetRevision: 0.10.3
       helm:
         valueFiles:
-          - $values/apps/infisical-operator/infisical-values.yaml
+          - $values/cluster/infisical-operator/infisical-values.yaml
     - repoURL: https://github.com/k1nho/homelab
       targetRevision: main
       ref: values
