@@ -1,0 +1,34 @@
+# OAuth - (Infisical secret)
+## Operator oauth credentials. If unset a Secret named operator-oauth must be
+# precreated or oauthSecretVolume needs to be adjusted. This block will be
+# overridden by oauthSecretVolume, if set.
+oauth:
+  clientId: ""
+  clientSecret: ""
+
+# Operator Configuration
+operatorConfig:
+  defaultTags:
+    - "tag:k8s-operator"
+
+  image:
+    repository: tailscale/k8s-operator
+    tag: ""
+    digest: ""
+    pullPolicy: Always
+
+  logging: "info"
+  hostname: "tailscale-operator"
+
+# Proxy Configuration
+proxyConfig:
+  defaultTags: "tag:k8s"
+
+  image:
+    repository: tailscale/tailscale
+    tag: ""
+    digest: ""
+
+  firewallMode: auto
+
+installCRDs: true
