@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+Kind: Service
+metadata:
+  name: kinho-blog-svc
+  labels:
+    app: kinho-blog
+spec:
+  type: ClusterIP
+  selector:
+    app: kinho-blog

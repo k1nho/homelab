@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kinho-blog
+  labels:
+    app: kinho-blog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kinho-blog
+  template:
+    metadata:
+      labels:
+        app: kinho-blog
+    spec:
+      containers:
+        - name: kinho-blog
+          image: ghcr.io/k1nho/kinho-blog:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "25m"
+            limits:
+              memory: "64Mi"
