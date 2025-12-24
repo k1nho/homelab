@@ -74,6 +74,12 @@ bpf:
   # @default -- `false`
   masquerade: true
 
+# TAILSCALE compatibility when running kube-proxy replacement mode
+# Necessary for exposing kubernetes services
+# ref: https://tailscale.com/kb/1236/kubernetes-operator#cilium-in-kube-proxy-replacement-mode
+socketLB:
+  hostNamespaceOnly: true
+
 # Virtual Extensible Local Area Network Configuration
 
 # -- Tunneling protocol to use in tunneling mode and for ad-hoc tunnels.
