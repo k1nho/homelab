@@ -25,3 +25,13 @@ spec:
               cpu: "25m"
             limits:
               memory: "64Mi"
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            preference:
+              matchExpressions:
+                - key: node-role.kubernetes.io/worker
+                  operator: In
+                  values:
+                    - "true"
