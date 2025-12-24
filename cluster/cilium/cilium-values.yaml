@@ -25,7 +25,7 @@ ipam:
 
 # Kubernetes API Server
 # -- (string) Kubernetes service host - use "auto" for automatic lookup from the cluster-info ConfigMap
-k8sServiceHost: "100.99.176.92"
+k8sServiceHost: "auto"
 # -- (string) Kubernetes service port
 k8sServicePort: "6443"
 
