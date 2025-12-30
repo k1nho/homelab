@@ -8,6 +8,10 @@ cluster:
   # The "default" name cannot be used if the Cluster ID is different from 0.
   name: default
 
+# CNI configuration
+cni:
+  binPath: /opt/cni/bin
+
 # Configure as a kube-proxy replacement
 # -- Configure the kube-proxy replacement in Cilium BPF datapath
 kubeProxyReplacement: "true"
@@ -15,13 +19,7 @@ kubeProxyReplacement: "true"
 # IP Address Management Mode
 ipam:
   # -- Configure IP Address Management mode.
-  operator:
-    # @schema
-    # type: [array, string]
-    # @schema
-    # -- IPv4 CIDR list range to delegate to individual nodes for IPAM.
-    # Matches the k3s PodCIDR
-    clusterPoolIPv4PodCIDRList: ["10.42.0.0/16"]
+  mode: kubernetes
 
 # Kubernetes API Server
 # -- (string) Kubernetes service host - use "auto" for automatic lookup from the cluster-info ConfigMap
@@ -37,7 +35,7 @@ operator:
 # L2 Announcements Configuration
 l2announcements:
   # -- Enable L2 announcements
-  enabled: true
+  enabled: false
 
 # k8 Client Rate Limit Configuration (increase to avoid request limit)
 k8sClientRateLimit:
