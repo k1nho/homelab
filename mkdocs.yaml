@@ -6,8 +6,8 @@ theme:
   favicon:
   palette:
     - scheme: default
-      primary: light blue
-      accent: light blue
+      primary: "#326CE5"
+      accent: "#326CE5"
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
@@ -67,10 +67,18 @@ nav:
   - Architecture:
       - Overview: architecture.md
       - Hardware: hardware.md
-      - Tailscale: tailscale.md
-      - Cilium: cilium.md
+      - Core:
+          - Kubernetes Distribution (K3s): k3s.md
+          - CNI (Cilium): cilium.md
+          - VPN (Tailscale): tailscale.md
   - Operations:
       - GitOps: gitops.md
+      - Secrets Management:
+          - Infisical (ESO): infisical.md
+      - Storage:
+          - WIP: storage.md
+  - Cluster Apps:
+      - Apps: apps.md
 
 copyright: >
   © 2025 Kin Hong NG. All rights reserved.
