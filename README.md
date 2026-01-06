@@ -7,10 +7,10 @@ Along the way, I self-host multiple services, including my **tech blog**, **Jell
 
 # The Homelab Series
 
-The progress of the homelab is documented in a **storytelling format** through my [blog](https://k1nho.github.io/blog/), where I share updates, challenges, and lessons learned during the development and expansion of the cluster.
+The progress of the homelab is documented in a **storytelling format** through my [blog](https://kincodes.com), where I share updates, challenges, and lessons learned during the development and expansion of the cluster.
 
 ---
 
 # The Homelab Documentation
 
-The [documentation]() contains an describes the architecture, components, and their purpose within the **k3s cluster** for the homelab series. It complements the blog by providing more details about configurations, and guides that might be skipped in the storytelling posts.
+The [documentation](https://kincodes.com/homelab/) contains an describes the architecture, components, and their purpose within the **k3s cluster** for the homelab series. It complements the blog by providing more details about configurations, and guides that might be skipped in the storytelling posts.
