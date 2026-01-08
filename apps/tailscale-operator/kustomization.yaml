@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
   - resources/operator-oauth-secret.yaml
+  - resources/crb-tsreader.yaml
