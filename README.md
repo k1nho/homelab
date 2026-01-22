@@ -7,7 +7,7 @@ Along the way, I self-host multiple services, including my **tech blog**, **Jell
 
 # The Homelab Series
 
-The progress of the homelab is documented in a **storytelling format** through my [blog](https://kincodes.com/posts/kinhos-homelab-series-securing-my-network-with-tailscale/), where I share updates, challenges, and lessons learned during the development and expansion of the cluster.
+The progress of the homelab is documented in a **storytelling format** through my [blog](https://kincodes.com/tags/homelab-series/), where I share updates, challenges, and lessons learned during the development and expansion of the cluster.
 
 ---
 
