@@ -1,0 +1,26 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: psql-cluster
+spec:
+  instances: 3
+  storage:
+    # storageClass: "local-path"
+    size: 10Gi
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.3
+
+  # Backup to object storage
+  # backup:
+  #   barmanObjectStore:
+  #     destinationPath: s3://BUCKET_NAME/path/to/folder
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: aws-creds
+  #         key: ACCESS_KEY_ID
+  #       secretAccessKey:
+  #         name: aws-creds
+  #         key: ACCESS_SECRET_KEY
+  #     wal:
+  #       compression: gzip
+  #    retentionPolicy: "30d"
