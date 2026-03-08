@@ -15,13 +15,13 @@ spec:
     enablePodMonitor: true
 
   # Bootstrap DB
-  # bootstrap:
+  bootstrap:
+    initdb:
+      database: linkding
+      owner: linkding
+      secret:
+        name: linkding-db-user-credentials
   # From SQL files
-  initdb:
-    database: linkding
-    owner: linkding
-    secret:
-      name: linkding-db-user-credentials
   #   postInitApplicationSQLRefs:
   #     configMapRefs:
   #       - name: post-init
