@@ -1,0 +1,56 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: linkding-db
+spec:
+  instances: 3
+  storage:
+    # storageClass: "local-path"
+    size: 1Gi
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.3
+
+  # Monitoring
+  monitoring:
+    enablePodMonitor: true
+
+  # Bootstrap DB
+  # bootstrap:
+  # From SQL files
+  initdb:
+    database: linkding
+    owner: linkding
+    secret:
+      name: linkding-db-user-credentials
+  #   postInitApplicationSQLRefs:
+  #     configMapRefs:
+  #       - name: post-init
+  #         key: post-init.sql
+  # ----------------------------
+  # From backup
+  #   recovery:
+  #     source: clusterBackup
+  #     database: db-name
+  #     owner: db-owner
+  #     secret:
+  #       name: db-credentials
+
+  # Backup to object storage
+  # backup:
+  #   barmanObjectStore:
+  #     destinationPath: s3://BUCKET_NAME/path/to/folder
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: aws-creds
+  #         key: ACCESS_KEY_ID
+  #       secretAccessKey:
+  #         name: aws-creds
+  #         key: ACCESS_SECRET_KEY
+  #     wal:
+  #       compression: gzip
+  #    retentionPolicy: "30d"
+
+  # Setup Timezones
+  # postgresql:
+  #   parameters:
+  #     timezone: "Europe/Oslo"
