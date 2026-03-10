@@ -22,7 +22,7 @@ We get a **client id** and then you can create a **client secret** by clicking o
 Lastly, we run the following command to create the secret in the cluster for the insifical operator to authenticate.
 
 ```bash
-kubectl create generic universal-auth-credentials --from-literal=clientId="<your-identity-client-id>" --from-literal=clientSecret="your-identity-client-secret>"
+kubectl create -n <ns> secret generic universal-auth-credentials --from-literal=clientId="<your-identity-client-id>" --from-literal=clientSecret="your-identity-client-secret>"
 ```
 
 The operator will pick up the secret, and we will be able to export our secrets with the custom CRDs. For example, to fetch an infisical secret
