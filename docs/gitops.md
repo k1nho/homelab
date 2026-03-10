@@ -15,7 +15,7 @@ To setup argo, we need to apply all its CRDs, and create a new namespace with th
 
 ```bash
 kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
 Then, you can extract the initial password for the admin user from the secret `argocd-initial-admin-secret`.
