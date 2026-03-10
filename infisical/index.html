@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../None">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
@@ -1109,7 +1109,7 @@ can also be implemented using <a href="https://infisical.com/docs/integrations/p
 <p>We get a <strong>client id</strong> and then you can create a <strong>client secret</strong> by clicking on <code>add client secret</code> button.</p>
 <p><img alt="Infisical Adding Client Secret" src="../assets/infisical_adding_client_secret.png" /></p>
 <p>Lastly, we run the following command to create the secret in the cluster for the insifical operator to authenticate.</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>generic<span class="w"> </span>universal-auth-credentials<span class="w"> </span>--from-literal<span class="o">=</span><span class="nv">clientId</span><span class="o">=</span><span class="s2">&quot;&lt;your-identity-client-id&gt;&quot;</span><span class="w"> </span>--from-literal<span class="o">=</span><span class="nv">clientSecret</span><span class="o">=</span><span class="s2">&quot;your-identity-client-secret&gt;&quot;</span>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>&lt;ns&gt;<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>universal-auth-credentials<span class="w"> </span>--from-literal<span class="o">=</span><span class="nv">clientId</span><span class="o">=</span><span class="s2">&quot;&lt;your-identity-client-id&gt;&quot;</span><span class="w"> </span>--from-literal<span class="o">=</span><span class="nv">clientSecret</span><span class="o">=</span><span class="s2">&quot;your-identity-client-secret&gt;&quot;</span>
 </code></pre></div>
 <p>The operator will pick up the secret, and we will be able to export our secrets with the custom CRDs. For example, to fetch an infisical secret
 we can use the <strong>InfisicalSecret</strong> CRD as follows.</p>
