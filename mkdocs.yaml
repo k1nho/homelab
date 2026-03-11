@@ -76,9 +76,9 @@ nav:
       - Secrets Management:
           - Infisical (ESO): infisical.md
       - Storage:
-          - WIP: storage.md
+          - SQL Databases: postgresql.md
   - Cluster Apps:
       - Apps: apps.md
 
 copyright: >
-  © 2025 Kin Hong NG. All rights reserved.
+  © 2026 Kin Hong NG. All rights reserved.
