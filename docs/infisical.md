@@ -5,7 +5,7 @@
 [Infisical](https://infisical.com/) is the software we use for managing secrets within the cluster. It follows the **external secrets operator** principle
 outlined in [architecture](./architecture.md).
 
-# Setup
+## Installation
 
 To get infisical up and running, we need to configure an [authentication method](http://infisical.com/docs/integrations/platforms/kubernetes/infisical-secret-crd#authentication-methods).
 The one with less friction would be the **universalAuth** where you simply create a secret that contains the clientId and the clientSecret. A more robust approach
