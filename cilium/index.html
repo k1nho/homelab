@@ -575,6 +575,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CNI (Cilium)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -591,6 +609,64 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#notable-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notable features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cilium-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cilium CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1012,6 +1088,53 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#notable-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notable features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cilium-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cilium CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1098,8 +1221,46 @@
 
 <h1 id="cilium">Cilium</h1>
 <p><img alt="Cilium Logo" src="../assets/cilium_logo.png" /></p>
-<p>Cilium is the <strong>container network interface</strong> of choice for the cluster. It provides a lot of advantages from other CNI such as Flannel that come shipped in
-with K3s.</p>
+<p>Cilium is the <strong>container network interface</strong> of choice for the cluster. It provides a lot of advantages,
+that extend its functionality from basic CNI duties and make it an excellent choice when compared to other CNIs.</p>
+<h2 id="notable-features">Notable features</h2>
+<ul>
+<li><strong>Faster native pod-to-pod networking with eBPF (no iptables overhead)</strong></li>
+<li><strong>Real-time L3/L4 observability with Hubble</strong></li>
+<li><strong>Built-in security with WireGuard encryption</strong></li>
+<li><strong>Advanced network policy enforcement at multiple layers</strong></li>
+<li><strong>MetalLB replacement with LB IPAM and L2 announcements</strong></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<h3 id="cilium-cli">Cilium CLI</h3>
+<p>Download the Cilium CLI with the following</p>
+<div class="highlight"><pre><span></span><code><span class="nv">CILIUM_CLI_VERSION</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt<span class="k">)</span>
+<span class="nv">CLI_ARCH</span><span class="o">=</span>amd64
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;aarch64&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nv">CLI_ARCH</span><span class="o">=</span>arm64<span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+curl<span class="w"> </span>-L<span class="w"> </span>--fail<span class="w"> </span>--remote-name-all<span class="w"> </span>https://github.com/cilium/cilium-cli/releases/download/<span class="si">${</span><span class="nv">CILIUM_CLI_VERSION</span><span class="si">}</span>/cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz<span class="o">{</span>,.sha256sum<span class="o">}</span>
+sha256sum<span class="w"> </span>--check<span class="w"> </span>cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz.sha256sum
+sudo<span class="w"> </span>tar<span class="w"> </span>xzvfC<span class="w"> </span>cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz<span class="w"> </span>/usr/local/bin
+rm<span class="w"> </span>cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz<span class="o">{</span>,.sha256sum<span class="o">}</span>
+</code></pre></div>
+<p>Then, configure IP and PORT variables based on where the Kubernetes Service is running.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">IP</span><span class="o">=</span>&lt;YOUR-IP&gt;
+<span class="nv">PORT</span><span class="o">=</span>&lt;YOUR-PORT&gt;
+cilium<span class="w"> </span>install<span class="w"> </span>--set<span class="w"> </span><span class="nv">k8sServiceHost</span><span class="o">=</span><span class="si">${</span><span class="nv">IP</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+--set<span class="w"> </span><span class="nv">k8sServicePort</span><span class="o">=</span><span class="si">${</span><span class="nv">PORT</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+--set<span class="w"> </span><span class="nv">kubeProxyReplacement</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+--set<span class="w"> </span>hubble.relay.enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+--set<span class="w"> </span>hubble.ui.enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+--set<span class="w"> </span>ipam.operator.clusterPoolIPv4PodCIDRList<span class="o">=</span><span class="s2">&quot;10.42.0.0/16&quot;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, Cilium uses cluster-pool-ipv4-cidr: 10.0.0.0/8 for its IPAM. That default can conflict with k3s’s PodCIDR (10.42.0.0/16), which will break cross-node pod communication if pods get IPs outside the intended range. To avoid this, explicitly set:</p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">ipam.operator.clusterPoolIPv4PodCIDRList=&quot;10.42.0.0/16&quot;</span>
+</code></pre></div>
+<p>You can also set the IPAM mode to kubernetes, if you would like cilium to pick up the PodCIDR from the kubernetes v1.Node object.</p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">ipam.mode=kubernetes</span>
+</code></pre></div>
+</div>
 
 
 
