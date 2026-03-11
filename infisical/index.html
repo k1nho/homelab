@@ -779,6 +779,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infisical (ESO)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -795,6 +813,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1012,6 +1060,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1100,7 +1167,7 @@
 <p><img alt="Infisical Logo" src="../assets/infisical_logo.png" /></p>
 <p><a href="https://infisical.com/">Infisical</a> is the software we use for managing secrets within the cluster. It follows the <strong>external secrets operator</strong> principle
 outlined in <a href="../architecture/">architecture</a>.</p>
-<h1 id="setup">Setup</h1>
+<h2 id="installation">Installation</h2>
 <p>To get infisical up and running, we need to configure an <a href="http://infisical.com/docs/integrations/platforms/kubernetes/infisical-secret-crd#authentication-methods">authentication method</a>.
 The one with less friction would be the <strong>universalAuth</strong> where you simply create a secret that contains the clientId and the clientSecret. A more robust approach
 can also be implemented using <a href="https://infisical.com/docs/integrations/platforms/kubernetes/infisical-secret-crd#authentication-kubernetesauth">Kubernetes Authentication</a>.</p>
