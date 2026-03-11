@@ -5,8 +5,9 @@
 Tailscale serves as the VPN mesh for all the nodes in the cluster.
 
 - Remote SSH access to all the nodes in the server
+- Ingress setup for all the services in the cluster (accesible by allowed devices in the tailnet).
 
-# Setting up tailscale
+## Installation
 
 Install the tailscale daemon on Linux with the following command.
 
