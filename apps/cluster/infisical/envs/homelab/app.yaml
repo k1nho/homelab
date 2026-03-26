@@ -1,0 +1,17 @@
+name: infisical-secrets-operator
+namespace: infisical-secrets-operator
+
+annotations:
+  argocd.argoproj.io/sync-wave: "1"
+
+sources:
+  - repoURL: https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts/
+    chart: secrets-operator
+    targetRevision: 0.10.3
+    helm:
+      valueFiles:
+        - $values/apps/cluster/infisical/envs/homelab/values.yaml
+
+  - repoURL: https://github.com/k1nho/homelab
+    targetRevision: main
+    ref: values

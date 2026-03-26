@@ -28,29 +28,51 @@ spec:
   #         key: post-init.sql
   # ----------------------------
   # From backup
-  #   recovery:
-  #     source: clusterBackup
-  #     database: db-name
-  #     owner: db-owner
-  #     secret:
-  #       name: db-credentials
+  # recovery:
+  #   backup: myBackupObject (from backup object)
+  #   source: clusterBackup (from external cluster)
+  #   database: db-name
+  #   owner: db-owner
+  #   secret:
+  #     name: db-credentials
 
   # Backup to object storage
   # backup:
   #   barmanObjectStore:
   #     destinationPath: s3://BUCKET_NAME/path/to/folder
+  #     endpointURL: http://custom-endpoint:1234
   #     s3Credentials:
   #       accessKeyId:
-  #         name: aws-creds
+  #         name: backup-creds
   #         key: ACCESS_KEY_ID
   #       secretAccessKey:
-  #         name: aws-creds
+  #         name: backup-creds
   #         key: ACCESS_SECRET_KEY
   #     wal:
   #       compression: gzip
+  #     data:
+  #       compression: gzip
+  #       encryption: AES256
+  #       immediateCheckpoint: false
+  #       jobs: 2
   #    retentionPolicy: "30d"
+
+  # resources:
+  #   requests:
+  #     memory: "512Mi"
+  #     cpu: "1"
+  #   limits:
+  #     memory: "1Gi"
 
   # Setup Timezones
   # postgresql:
   #   parameters:
   #     timezone: "Europe/Oslo"
+
+  # affinity:
+  #   enablePodAntiAffinity: true
+  #   topologyKey: failure-domain.beta.kubernetes.io/zone
+
+  # nodeMaintenanceWindow:
+  #   inProgress: false
+  #   reusePVC: false (no PVC reuse during maintenance)
