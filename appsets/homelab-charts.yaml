@@ -1,0 +1,53 @@
+# The homelab charts appset installs all the helm charts defined under envs/homelab
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: homelab-charts-appset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    # - matrix: (use to target multi-cluster setup)
+    # generators:
+    - git:
+        repoURL: https://github.com/k1nho/homelab.git
+        revision: HEAD
+        directories:
+          - path: charts/*/envs/homelab/config.json
+    #          - clusters: (label clusters to allow multi-cluster setup)
+    #              selector:
+    #                matchLabels:
+    #                  type: "workload"
+    #                  env: "homelab"
+  template:
+    metadata:
+      name: "{{index .path.segments 1}}-{{.env}}"
+      annotations:
+        argocd.argoproj.io/sync-wave: "{{.priority}}"
+    spec:
+      project: default
+
+      sources:
+        - repoURL: "{{.repoURL}}"
+          chart: "{{.chart}}"
+          targetRevision: "{{.targetRevision}}"
+          helm:
+            valueFiles: # last patch merge approach ()
+              - "$values/values/{{index .path.segments 1}}/common-values.yaml"
+              - "$values/values/{{index .path.segments 1}}/envs/{{.env}}-values.yaml"
+
+        - repoURL: "https://github.com/k1nho/homelab.git"
+          targetRevision: HEAD
+          ref: values
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
+          prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
+          selfHeal: true # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).

@@ -1,0 +1,19 @@
+# Root application enables the app of apps pattern
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/k1nho/homelab
+      targetRevision: HEAD
+      path: appsets
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
