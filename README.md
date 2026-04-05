@@ -14,3 +14,42 @@ The progress of the homelab is documented in a **storytelling format** through m
 # The Homelab Documentation
 
 The [documentation](https://kincodes.com/homelab/) contains an describes the architecture, components, and their purpose within the **k3s cluster** for the homelab series. It complements the blog by providing more details about configurations, and guides that might be skipped in the storytelling posts.
+
+---
+
+# Architecture
+
+This repository uses the app of apps pattern to trigger the installation all the Kubernetes resources with ArgoCD. Moreover, it uses a promotion system structure based on environment hierarchy.
+
+- `root.yaml`: The entrypoint defines a bootstrap application that points to all the homelab ApplicationSets
+- `appsets`: Contains all the ApplicationSet Custom Resource to apply
+- `kustomize-apps`: Contains all the applications that are installed via [Kustomize](https://kustomize.io/)
+- `charts`: Contains all the applications that are installed via [Helm Charts](https://helm.sh/)
+- `values`: Contains all the custom values to apply to the helm charts based on the environment hierarchy
+- `docs`: The homelab documentation
+
+---
+
+# Applications
+
+Applications running in the cluster are split by the installation strategy which can be: Kustomize, and Helm Charts.
+
+## 📜 Kustomize
+
+| App                                                                               | Description                                 | Homelab Kustomize                                                                             |
+| --------------------------------------------------------------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [**Argo UI**](https://argo-cd.readthedocs.io/en/stable/)                          | The Argo UI                                 | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/argo-ui/envs/homelab/)            |
+| [**Blog**](https://kincodes.com)                                                  | My personal blog                            | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/blog/envs/homelab/)               |
+| [**Linkding**](https://linkding.link/)                                            | Bookmark manager application                | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/linkding/envs/homelab/)           |
+| [**Tailscale Operator**](https://tailscale.com/docs/features/kubernetes-operator) | Custom Resources for the tailscale operator | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/tailscale-operator/envs/homelab/) |
+
+## ☸️ Helm
+
+| App                                                                                                     | Description                                                                                         | Chart                                                                                    | Values                                                                                                        |
+| ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [**Cilium**](https://cilium.io/)                                                                        | Cilium is the CNI of choice for the cluster                                                         | [Chart](https://github.com/cilium/cilium/tree/v1.18.4/install/kubernetes/cilium)         | [Values](https://github.com/cilium/cilium/blob/v0.18.4/install/kubernetes/cilium/values.yaml)                 |
+| [**Cloud Native PG**](https://cloudnative-pg.io/)                                                       | Kubernetes operator to manage the full lifecycle of a PostgreSQL database cluster                   | [Chart](https://github.com/cloudnative-pg/charts/tree/main/charts/cloudnative-pg)        | [Values](https://github.com/cloudnative-pg/charts/blob/main/charts/cloudnative-pg/values.yaml)                |
+| [**Infisical Secrets Operator**](https://infisical.com/docs/integrations/platforms/kubernetes/overview) | Implements the external secret operator pattern (ESO) to manage Kubernetes secrets in the cluster   | [Chart](github.com/Infisical/kubernetes-operator/tree/main/helm-charts/secrets-operator) | [Values](https://github.com/Infisical/kubernetes-operator/blob/main/helm-charts/secrets-operator/values.yaml) |
+| [**Tailscale Operator**](https://tailscale.com/docs/features/kubernetes-operator)                       | Tailscale kubernetes operator (enable ingress to access services on all authorized tailnet devices) | [Chart]()                                                                                | [Values]()                                                                                                    |
+
+---

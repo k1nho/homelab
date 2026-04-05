@@ -1,0 +1,36 @@
+# The homelab apps appset installs all the kustomize apps defined under envs/homelab
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: homelab-apps-appset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/k1nho/homelab.git
+        revision: HEAD
+        directories:
+          - path: apps/*/envs/homelab
+  template:
+    metadata:
+      name: "{{index .path.segments 1}}-{{index .path.segments 3}}"
+    spec:
+      project: default
+
+      source:
+        repoURL: https://github.com/k1nho/homelab.git
+        targetRevision: HEAD
+        path: "{{.path.path}}"
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{index .path.segments 1}}"
+
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
+          prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
+          selfHeal: true # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
