@@ -13,8 +13,8 @@ spec:
     - git:
         repoURL: https://github.com/k1nho/homelab.git
         revision: HEAD
-        directories:
-          - path: charts/*/envs/homelab/config.json
+        files:
+          - path: "charts/*/envs/homelab/config.json"
     #          - clusters: (label clusters to allow multi-cluster setup)
     #              selector:
     #                matchLabels:
