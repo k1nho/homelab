@@ -3,5 +3,6 @@
   "repoURL": "https://pkgs.tailscale.com/helmcharts",
   "chart": "tailscale-operator",
   "targetRevision": "1.90.9",
-  "env": "homelab"
+  "env": "homelab",
+  "priority": "0"
 }
