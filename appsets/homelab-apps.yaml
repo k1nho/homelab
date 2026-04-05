@@ -12,7 +12,7 @@ spec:
         repoURL: https://github.com/k1nho/homelab.git
         revision: HEAD
         directories:
-          - path: apps/*/envs/homelab
+          - path: kustomize-apps/*/envs/homelab
   template:
     metadata:
       name: "{{index .path.segments 1}}-{{index .path.segments 3}}"
