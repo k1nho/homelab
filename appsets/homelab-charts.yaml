@@ -49,7 +49,7 @@ spec:
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
-          - ServerSideApply={{ default false (index ".serverSideApply") }}
+          - ServerSideApply={{ default false (index . "serverSideApply") }}
         automated:
           prune: true
           selfHeal: true
