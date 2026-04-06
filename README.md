@@ -36,12 +36,11 @@ Applications running in the cluster are split by the installation strategy which
 
 ## 📜 Kustomize
 
-| App                                                                               | Description                                 | Homelab Kustomize                                                                             |
-| --------------------------------------------------------------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [**Argo UI**](https://argo-cd.readthedocs.io/en/stable/)                          | The Argo UI                                 | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/argo-ui/envs/homelab/)            |
-| [**Blog**](https://kincodes.com)                                                  | My personal blog                            | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/blog/envs/homelab/)               |
-| [**Linkding**](https://linkding.link/)                                            | Bookmark manager application                | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/linkding/envs/homelab/)           |
-| [**Tailscale Operator**](https://tailscale.com/docs/features/kubernetes-operator) | Custom Resources for the tailscale operator | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/tailscale-operator/envs/homelab/) |
+| App                                                      | Description                  | Homelab Kustomize                                                                   |
+| -------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------- |
+| [**Argo UI**](https://argo-cd.readthedocs.io/en/stable/) | The Argo UI                  | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/argo-ui/envs/homelab/)  |
+| [**Blog**](https://kincodes.com)                         | My personal blog             | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/blog/envs/homelab/)     |
+| [**Linkding**](https://linkding.link/)                   | Bookmark manager application | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/linkding/envs/homelab/) |
 
 ## ☸️ Helm
 
