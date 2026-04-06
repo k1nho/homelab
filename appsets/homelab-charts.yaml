@@ -29,6 +29,11 @@ spec:
       project: default
 
       sources:
+        # Kustomize
+        - repoURL: "https://github.com/k1nho/homelab.git"
+          targetRevision: HEAD
+          path: "charts/{{index .path.segments 1}}/kustomize/envs/{{.env}}"
+
         - repoURL: "{{.repoURL}}"
           chart: "{{.chart}}"
           targetRevision: "{{.targetRevision}}"
