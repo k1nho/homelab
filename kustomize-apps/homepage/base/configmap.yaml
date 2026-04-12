@@ -40,13 +40,13 @@ data:
 
     - Services:
         - Linkding :
-          href: https://linkding.manakin-koi.ts.net 
-          description: Bookmark Manager 
+            href: https://linkding.manakin-koi.ts.net 
+            description: Bookmark Manager 
 
     - Personal:
         - Blog:
-          href: https://blog.manakin-koi.ts.net
-          description: My Personal Blog
+            href: https://blog.manakin-koi.ts.net
+            description: My Personal Blog
 
   widgets.yaml: |
     - kubernetes:
@@ -71,3 +71,4 @@ data:
         provider: duckduckgo
         target: _blank
   docker.yaml: ""
+  promox.yaml: ""
