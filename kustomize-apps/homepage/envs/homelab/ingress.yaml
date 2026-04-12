@@ -7,7 +7,7 @@ spec:
     service:
       name: homepage
       port:
-        number: 443
+        number: 3000
   ingressClassName: tailscale
   tls:
     - hosts:

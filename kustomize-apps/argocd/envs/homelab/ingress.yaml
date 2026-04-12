@@ -7,7 +7,7 @@ spec:
     service:
       name: argocd-server
       port:
-        number: 3000
+        number: 443
   ingressClassName: tailscale
   tls:
     - hosts:
