@@ -77,9 +77,6 @@ spec:
             - mountPath: /app/config/widgets.yaml
               name: homepage-config
               subPath: widgets.yaml
-            - mountPath: /app/config/promox.yaml
-              name: homepage-config
-              subPath: promox.yaml
             - mountPath: /app/config/logs
               name: logs
       volumes:

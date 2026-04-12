@@ -35,6 +35,7 @@ data:
   services.yaml: |
     - Infrastructure:
         - Argo CD:
+            icon: argo-cd.png
             href: https://argo.manakin-koi.ts.net
             description: Argo CD Server (GitOps) 
 
@@ -49,26 +50,7 @@ data:
             description: My Personal Blog
 
   widgets.yaml: |
-    - kubernetes:
-        cluster:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
-          label: "cluster"
-        nodes:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
-    - resources:
-        backend: resources
-        expanded: true
-        cpu: true
-        memory: true
-        network: default
     - search:
         provider: duckduckgo
         target: _blank
   docker.yaml: ""
-  proxmox.yaml: ""
