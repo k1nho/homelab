@@ -31,9 +31,14 @@ data:
               abbr: IF
               href: https://app.infisical.com
 
+    - Learning:
+        - Iximiuz Labs:
+            - abbr: IX
+              href: https://labs.iximiuz.com/dashboard
+            
     - Social:
         - LinkedIn: 
-            - icon: linkding.png
+            - icon: linkedin.png
               abbr: IN
               href: https://www.linkedin.com/feed/
         - X:
