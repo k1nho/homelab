@@ -30,8 +30,22 @@ data:
 
     - Social:
         - LinkedIn: 
-            - abbr: IN
+            - icon: linkding.png
+              abbr: IN
               href: https://www.linkedin.com/feed/
+        - X:
+            - icon: x.png.png
+              abbr: X
+              href: https://www.x.com/home/
+            
+    - Lifestyle:
+        - Gmail:
+            - icon: gmail.png
+              href: https://mail.google.com/mail/u/0/#inbox
+        - Bank:
+            - icon: bank-of-america.png
+              href: https://www.bankofamerica.com/
+
   services.yaml: |
     - Infrastructure:
         - Argo CD:
@@ -46,11 +60,12 @@ data:
 
     - Personal:
         - Blog:
+            icon: mdi-post
             href: https://blog.manakin-koi.ts.net
             description: My Personal Blog
 
   widgets.yaml: |
     - search:
-        provider: duckduckgo
+        provider: google
         target: _blank
   docker.yaml: ""
