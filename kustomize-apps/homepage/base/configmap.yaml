@@ -19,13 +19,16 @@ data:
   bookmarks.yaml: |
     - Developer:
         - Github:
-            - abbr: GH
+            - icon: github.png
+              abbr: GH
               href: https://github.com/k1nho
         - Tailscale:
-            - abbr: TS
+            - icon: tailscale.png
+              abrr: TS
               href: https://login.tailscale.com/admin/machines
         - Infisical:
-            - abbr: IF
+            - icon: infisical.png
+              abbr: IF
               href: https://app.infisical.com
 
     - Social:
@@ -34,7 +37,7 @@ data:
               abbr: IN
               href: https://www.linkedin.com/feed/
         - X:
-            - icon: x.png.png
+            - icon: x.png
               abbr: X
               href: https://www.x.com/home/
             
@@ -43,18 +46,31 @@ data:
             - icon: gmail.png
               href: https://mail.google.com/mail/u/0/#inbox
         - Bank:
-            - icon: bank-of-america.png
+            - icon: sh-bank-of-america
               href: https://www.bankofamerica.com/
 
   services.yaml: |
     - Infrastructure:
+        - Cilium:
+            icon: cilium.png
+            href: cilium.io
+            description: Container Networking Interface
         - Argo CD:
             icon: argo-cd.png
             href: https://argo.manakin-koi.ts.net
             description: Argo CD Server (GitOps) 
+        - Homelab:
+            icon: mdi-home-circle
+            href: https://github.com/k1nho/homelab
+            description: The homelab repository
+        - CloudNativePG:
+            icon: sh-postgresql
+            href: https://cloudnative-pg.io/
+            description: CNPG Kubernetes Operator for PostgreSQL database clusters
 
     - Services:
         - Linkding :
+            icon: linkding.png
             href: https://linkding.manakin-koi.ts.net 
             description: Bookmark Manager 
 
@@ -63,8 +79,30 @@ data:
             icon: mdi-post
             href: https://blog.manakin-koi.ts.net
             description: My Personal Blog
+        - Homepage:
+            icon: sh-homepage
+            href: https://homepage.manakin-koi.ts.net 
+            description: All in one cluster entrypoint
 
   widgets.yaml: |
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "cluster"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+    - resources:
+        backend: resources
+        expanded: true
+        cpu: true
+        memory: true
+        network: default
     - search:
         provider: google
         target: _blank
