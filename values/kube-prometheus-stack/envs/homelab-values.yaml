@@ -1,0 +1,37 @@
+prometheus:
+  prometheusSpec:
+    remoteWriteDashboards: false
+    serverSideApply: true
+    retention: 1d
+    retentionSize: 8Gi # Reasonable 80%-85% of pvc max
+
+    # Prometheus Persistence
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          # storageClassName: ""
+          resources:
+            requests:
+              storage: 10Gi
+
+grafana:
+  # Grafana persistence
+  persistence:
+    enabled: true
+    type: sts
+    # storageClassName: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+
+alertmanager:
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          # storageClassName: ""
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 5Gi
