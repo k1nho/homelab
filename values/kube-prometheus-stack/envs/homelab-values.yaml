@@ -3,7 +3,7 @@ prometheus:
     remoteWriteDashboards: false
     serverSideApply: true
     retention: 1d
-    retentionSize: 8Gi # Reasonable 80%-85% of pvc max
+    retentionSize: 8GiB # Reasonable 80%-85% of pvc max
 
     # Prometheus Persistence
     storageSpec:
