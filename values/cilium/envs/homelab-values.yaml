@@ -7,6 +7,9 @@ ipam:
   # -- Configure IP Address Management mode.
   mode: kubernetes
 
+# IPv4 Native Routing CIDR (pod network, necessary for routing mode native)
+ipv4NativeRoutingCIDR: 10.42.0.0/16
+
 # Kubernetes API Server
 # -- (string) Kubernetes service host - use "auto" for automatic lookup from the cluster-info ConfigMap
 k8sServiceHost: "10.0.0.250"
