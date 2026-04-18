@@ -64,6 +64,10 @@ data:
             icon: argo-cd.png
             href: https://argo.manakin-koi.ts.net
             description: Argo CD Server (GitOps) 
+        - Grafana :
+            icon: grafana.png
+            href: https://grafana.manakin-koi.ts.net 
+            description: Grafana Dashboards (Kube-Prometheus Stack) 
         - Homelab:
             icon: mdi-home-circle
             href: https://github.com/k1nho/homelab
@@ -78,6 +82,7 @@ data:
             icon: linkding.png
             href: https://linkding.manakin-koi.ts.net 
             description: Bookmark Manager 
+        
 
     - Personal:
         - Blog:
