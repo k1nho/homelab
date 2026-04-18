@@ -1,17 +1,3 @@
-# Cluster Configuration
-cluster:
-  # -- Name of the cluster. Only required for Cluster Mesh and mutual authentication with SPIRE.
-  # It must respect the following constraints:
-  # * It must contain at most 32 characters;
-  # * It must begin and end with a lower case alphanumeric character;
-  # * It may contain lower case alphanumeric characters and dashes between.
-  # The "default" name cannot be used if the Cluster ID is different from 0.
-  name: default
-
-# CNI configuration
-cni:
-  binPath: /opt/cni/bin
-
 # Configure as a kube-proxy replacement
 # -- Configure the kube-proxy replacement in Cilium BPF datapath
 kubeProxyReplacement: "true"
@@ -86,7 +72,7 @@ socketLB:
 #   - vxlan
 #   - geneve
 # @default -- `"vxlan"`
-tunnelProtocol: "vxlan"
+tunnelProtocol: ""
 
 # -- Enable native-routing mode or tunneling mode.
 # Possible values:
@@ -94,12 +80,12 @@ tunnelProtocol: "vxlan"
 #   - native
 #   - tunnel
 # @default -- `"tunnel"`
-routingMode: "tunnel"
+routingMode: "native"
 
 # -- Enable installation of PodCIDR routes between worker
 # nodes if worker nodes share a common L2 network segment.
 # (nodes are not on the same L2 network)
-autoDirectNodeRoutes: false
+autoDirectNodeRoutes: true
 
 # -- (bool) Enables masquerading of IPv4 traffic leaving the node from endpoints.
 # @default -- `true` unless ipam eni mode is active
