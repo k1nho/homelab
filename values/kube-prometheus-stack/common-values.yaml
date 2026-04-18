@@ -38,11 +38,6 @@ prometheus:
 
 grafana:
   enabled: true
-  # Grafana secret
-  admin:
-    existingSecret: "grafana-secret"
-    userKey: admin-user
-    passwordKey: admin-password
 
   # Grafana persistence
   persistence:
