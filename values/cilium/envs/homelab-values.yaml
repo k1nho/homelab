@@ -10,6 +10,13 @@ ipam:
 # IPv4 Native Routing CIDR (pod network, necessary for routing mode native)
 ipv4NativeRoutingCIDR: 10.42.0.0/16
 
+# -- Specify which network interfaces can run the eBPF datapath. This means
+# that a packet sent from a pod to a destination outside the cluster will be
+# masqueraded (to an output device IPv4 address), if the output device runs the
+# program. When not specified, probing will automatically detect devices that have
+# a non-local route. This should be used only when autodetection is not suitable.
+devices: "wlp2s0"
+
 # Kubernetes API Server
 # -- (string) Kubernetes service host - use "auto" for automatic lookup from the cluster-info ConfigMap
 k8sServiceHost: "10.0.0.250"
