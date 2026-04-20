@@ -82,7 +82,11 @@ data:
             icon: linkding.png
             href: https://linkding.manakin-koi.ts.net 
             description: Bookmark Manager 
-        
+        - Open Cost:
+            icon: opencost.png
+            href: https://opencost.manakin-koi.ts.net 
+            description: Cost monitoring (FinOps) 
+
 
     - Personal:
         - Blog:
