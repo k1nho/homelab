@@ -1,0 +1,34 @@
+opencost:
+  exporter:
+    replicas: 1
+    defaultClusterId: "homelab-cluster"
+  prometheus:
+    internal:
+      enabled: true
+      serviceName: kube-prometheus-stack-home-prometheus
+      namespaceName: monitoring
+      port: 9090
+  persistence:
+    enabled: true
+    # storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 3Gi
+  customPrincing:
+    enabled: true
+    configmapName: custom-pricing-model
+    costModel:
+      description: Kinho's Homelab
+      CPU: "0.0149"
+      spotCPU: "0.0075"
+      RAM: "0.0011"
+      spotRAM: "0.000892"
+      GPU: "0.95"
+      storage: "0.00002"
+      zoneNetworkEgress: "0.01"
+      regionNetworkEgress: "0.01"
+      internetNetworkEgress: "0.12"
+
+  # Data retention (days)
+  retention1d: 7
+  # Data retention (hours)
+  retention1h: 24

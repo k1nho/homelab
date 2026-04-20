@@ -1,0 +1,59 @@
+service:
+  enabled: true
+  type: ClusterIP
+  annotations: {}
+  labels: {}
+
+opencost:
+  exporter:
+    defaultClusterId: "default-cluster"
+    image:
+      tag: "1.120.0@sha256:c4fbe5f8fad2bc54872350460e705bf9ab43c90efa784a0cdf3a2a39a66b3b82"
+    resources:
+      requests:
+        cpu: "10m"
+        memory: "55Mi"
+      limits:
+        memory: "1Gi"
+
+  prometheus:
+    internal:
+      enabled: true
+      serviceName: prometheus-server
+      namespaceName: monitoring
+      port: 9090
+  ui:
+    enabled: true
+    image:
+      tag: "1.120.0@sha256:2a2ed5d423402b1d3f104398971191618a91bfc293f53c704606bbbd39b2652c"
+    resources:
+      requests:
+        cpu: "10m"
+        memory: "55Mi"
+      limits:
+        memory: "1Gi"
+
+  # Data retention (days)
+  retention1d: 15
+  # Data retention (hours)
+  retention1h: 49
+
+  #    affinity:
+  #      nodeAffinity:
+  #        preferredDuringSchedulingIgnoredDuringExecution:
+  #          - weight: 100
+  #            preference:
+  #              matchExpressions:
+  #                - key: node-role.kubernetes.io/worker
+  #                  operator: In
+  #                  values:
+  #                    - "true"
+
+metrics:
+  kubeStateMetrics:
+    emitKsmV1Metrics: false
+    emitKsmV1MetricsOnly: false
+  serviceMonitor:
+    enabled: true
+    additionalLabels:
+      release: monitoring

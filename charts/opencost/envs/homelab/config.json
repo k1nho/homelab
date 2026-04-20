@@ -1,0 +1,9 @@
+{
+  "namespace": "opencost",
+  "repoURL": "https://opencost.github.io/opencost-helm-chart",
+  "chart": "opencost",
+  "targetRevision": "2.5.12",
+  "env": "homelab",
+  "priority": "2",
+  "serverSideApply": true
+}
