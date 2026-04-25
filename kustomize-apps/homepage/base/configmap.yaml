@@ -82,6 +82,10 @@ data:
             icon: linkding.png
             href: https://linkding.manakin-koi.ts.net 
             description: Bookmark Manager 
+        - Uptime Kuma:
+            icon: uptime-kuma.png
+            href: https://uptime-kuma.manakin-koi.ts.net
+            description: Monitor Services Uptime (SLA)
         - Open Cost:
             icon: opencost.png
             href: https://opencost.manakin-koi.ts.net 
