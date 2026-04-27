@@ -36,12 +36,13 @@ Applications running in the cluster are split by the installation strategy which
 
 ## 📜 Kustomize
 
-|                                                                                                 | App                                                      | Description                  | Homelab Kustomize                                                                   |
-| ----------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------- |
-| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/argo-cd.png" width="24">                | [**Argo UI**](https://argo-cd.readthedocs.io/en/stable/) | The Argo UI                  | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/argocd/envs/homelab/)   |
-| <img src="https://img.icons8.com/?size=100&id=cXYUoqPdbtbr&format=png&color=000000" width="24"> | [**Blog**](https://kincodes.com)                         | My personal blog             | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/blog/envs/homelab/)     |
-| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/homepage.png" width="24">               | [**Homepage**](https://gethomepage.dev/)                 | Cluster Dashboard Entrypoint | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/homepage/envs/homelab/) |
-| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/linkding.png" width="24">               | [**Linkding**](https://linkding.link/)                   | Bookmark manager application | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/linkding/envs/homelab/) |
+|                                                                                                    | App                                                      | Description                  | Homelab Kustomize                                                                     |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------- |
+| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/argo-cd.png" width="24">                   | [**Argo UI**](https://argo-cd.readthedocs.io/en/stable/) | The Argo UI                  | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/argocd/envs/homelab/)     |
+| <img src="https://img.icons8.com/?size=100&id=cXYUoqPdbtbr&format=png&color=000000" width="24">    | [**Blog**](https://kincodes.com)                         | My personal blog             | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/blog/envs/homelab/)       |
+| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/homepage.png" width="24">                  | [**Homepage**](https://gethomepage.dev/)                 | Cluster Dashboard Entrypoint | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/homepage/envs/homelab/)   |
+| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/linkding.png" width="24">                  | [**Linkding**](https://linkding.link/)                   | Bookmark manager application | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/linkding/envs/homelab/)   |
+| <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/uptime-kuma.png" width="24"> | [**Uptime Kuma**](https://uptimekuma.org/)               | Service Uptime Monitoring    | [Kustomize](https://github.com/k1nho/homelab/kustomize-apps/uptime-kuma/envs/homelab) |
 
 ## ☸️ Helm
 
