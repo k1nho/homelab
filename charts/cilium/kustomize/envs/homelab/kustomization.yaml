@@ -3,6 +3,8 @@ kind: Kustomization
 
 resources:
   - ../../base
+  - ip-pool.yaml
+  - announce.yaml
 # patchesStrategicMerge:
 #  - db.yaml
 # - service.yaml
