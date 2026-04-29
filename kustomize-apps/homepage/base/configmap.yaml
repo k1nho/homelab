@@ -55,19 +55,15 @@ data:
               href: https://www.bankofamerica.com/
 
   services.yaml: |
-    - Infrastructure:
+    - Core:
+        - Argo CD:
+            icon: argo-cd.png
+            href: https://argo.manakin-koi.ts.net
+            description: Argo CD Server (GitOps)
         - Cilium:
             icon: cilium.png
             href: cilium.io
             description: Container Networking Interface
-        - Argo CD:
-            icon: argo-cd.png
-            href: https://argo.manakin-koi.ts.net
-            description: Argo CD Server (GitOps) 
-        - Grafana :
-            icon: grafana.png
-            href: https://grafana.manakin-koi.ts.net 
-            description: Grafana Dashboards (Kube-Prometheus Stack) 
         - Homelab:
             icon: mdi-home-circle
             href: https://github.com/k1nho/homelab
@@ -77,19 +73,25 @@ data:
             href: https://cloudnative-pg.io/
             description: CNPG Kubernetes Operator for PostgreSQL database clusters
 
+    - Monitoring:
+        - Grafana:
+            icon: grafana.png
+            href: https://grafana.manakin-koi.ts.net 
+            description: Grafana Dashboards (Kube-Prometheus Stack) 
+        - Open Cost:
+            icon: opencost.png
+            href: https://opencost.manakin-koi.ts.net 
+            description: Cost monitoring (FinOps) 
+        - Uptime Kuma:
+            icon: uptime-kuma.png
+            href: https://uptime-kuma.manakin-koi.ts.net
+            description: Monitor Services Uptime (SLA)
+
     - Services:
         - Linkding :
             icon: linkding.png
             href: https://linkding.manakin-koi.ts.net 
             description: Bookmark Manager 
-        - Uptime Kuma:
-            icon: uptime-kuma.png
-            href: https://uptime-kuma.manakin-koi.ts.net
-            description: Monitor Services Uptime (SLA)
-        - Open Cost:
-            icon: opencost.png
-            href: https://opencost.manakin-koi.ts.net 
-            description: Cost monitoring (FinOps) 
 
 
     - Personal:
