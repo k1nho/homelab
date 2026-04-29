@@ -28,10 +28,18 @@ operator:
   # -- Number of replicas to run for the cilium-operator deployment
   replicas: 1
 
+gatewayAPI:
+  # -- Enable support for Gateway API in cilium
+  enabled: true
+  # Host Network related configuration
+  hostNetwork:
+    # -- Configure whether the Envoy listeners should be exposed on the host network.
+    enabled: false
+
 # L2 Announcements Configuration
 l2announcements:
   # -- Enable L2 announcements
-  enabled: false
+  enabled: true
 
 # k8 Client Rate Limit Configuration (increase to avoid request limit)
 k8sClientRateLimit:
