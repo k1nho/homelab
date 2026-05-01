@@ -25,7 +25,7 @@ spec:
       dnsPolicy: ClusterFirst
       containers:
         - name: koffan
-          image: louislam/uptime-kuma:2.2.1
+          image: pansalut/koffan:v2.10.0
           envFrom:
             - secretRef:
                 name: koffan-env-vars
