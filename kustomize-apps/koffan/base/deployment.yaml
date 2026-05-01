@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koffan
+  labels:
+    app.kubernetes.io/name: koffan
+spec:
+  revisionHistoryLimit: 2
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1 # Allow 1 extra pod during updates
+      maxUnavailable: 0 # Ensure no pods are unavailable
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: koffan
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: koffan
+    spec:
+      serviceAccountName: koffan-sa
+      automountServiceAccountToken: true
+      dnsPolicy: ClusterFirst
+      containers:
+        - name: koffan
+          image: louislam/uptime-kuma:2.2.1
+          envFrom:
+            - secretRef:
+                name: koffan-env-vars
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              memory: "256Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 2
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 3
+            successThreshold: 1
+          volumeMounts:
+            - name: storage
+              mountPath: /data
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: koffan-pvc
