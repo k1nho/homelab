@@ -92,6 +92,10 @@ data:
             icon: linkding.png
             href: https://linkding.manakin-koi.ts.net 
             description: Bookmark Manager 
+        - Koffan :
+            icon: koffan.png
+            href: https://koffan.manakin-koi.ts.net 
+            description: Shopping List 
 
 
     - Personal:
