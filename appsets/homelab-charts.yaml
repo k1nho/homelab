@@ -44,7 +44,7 @@ spec:
         # Helm chart source
         - repoURL: "{{.repoURL}}"
           {{- if hasKey . "gitPath" }}
-          path: {{".gitPath"}}
+          path: "{{.gitPath}}"
           {{- else }}
           chart: "{{.chart}}"
           {{ end }}
