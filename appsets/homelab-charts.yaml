@@ -29,7 +29,7 @@ spec:
 
         # Helm chart source
         - repoURL: "{{.repoURL}}"
-          {{-if hasKey . "chart"}}
+          {{- if hasKey . "chart" }}
           chart: "{{.chart}}"
           {{- else }}
           path: "{{.path}}"
