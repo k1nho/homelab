@@ -29,11 +29,7 @@ spec:
 
         # Helm chart source
         - repoURL: "{{.repoURL}}"
-          {{-if hasKey . "chart"}}
           chart: "{{.chart}}"
-          {{- else }}
-          path: "{{.path}}"
-          {{- end }}
           targetRevision: "{{.targetRevision}}"
           helm:
             valueFiles:
