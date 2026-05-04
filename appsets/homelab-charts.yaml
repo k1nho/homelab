@@ -21,8 +21,6 @@ spec:
     spec:
       project: default
 
-      sources:
-
       destination:
         server: https://kubernetes.default.svc
         namespace: "{{.namespace}}"
