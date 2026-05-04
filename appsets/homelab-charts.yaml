@@ -22,24 +22,6 @@ spec:
       project: default
 
       sources:
-        # Kustomize for extra resources like secrets or RBAC
-        - repoURL: "https://github.com/k1nho/homelab.git"
-          targetRevision: HEAD
-          path: "charts/{{index .path.segments 1}}/kustomize/envs/{{.env}}"
-
-        # Helm chart source
-        - repoURL: "{{.repoURL}}"
-          chart: "{{.chart}}"
-          targetRevision: "{{.targetRevision}}"
-          helm:
-            valueFiles:
-              - "$values/values/{{index .path.segments 1}}/common-values.yaml"
-              - "$values/values/{{index .path.segments 1}}/envs/{{.env}}-values.yaml"
-
-        # Optional extra values
-        - repoURL: "https://github.com/k1nho/homelab.git"
-          targetRevision: HEAD
-          ref: values
 
       destination:
         server: https://kubernetes.default.svc
@@ -53,3 +35,28 @@ spec:
         automated:
           prune: true
           selfHeal: true
+  templatePatch: |
+    spec:
+      sources:
+         # Kustomize for extra resources like secrets or RBAC
+        - repoURL: "https://github.com/k1nho/homelab.git"
+          targetRevision: HEAD
+          path: "charts/{{index .path.segments 1}}/kustomize/envs/{{.env}}"
+
+        # Helm chart source
+        - repoURL: "{{.repoURL}}"
+          {{- if hasKey . "gitPath" }}
+          path: {{".gitPath"}}
+          {{- else }}
+          chart: "{{.chart}}"
+          {{ end }}
+          targetRevision: "{{.targetRevision}}"
+          helm:
+            valueFiles:
+              - "$values/values/{{index .path.segments 1}}/common-values.yaml"
+              - "$values/values/{{index .path.segments 1}}/envs/{{.env}}-values.yaml"
+
+        # Optional extra values
+        - repoURL: "https://github.com/k1nho/homelab.git"
+          targetRevision: HEAD
+          ref: values
