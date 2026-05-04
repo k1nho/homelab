@@ -1,0 +1,19 @@
+garage:
+  s3:
+    api:
+      bindAddr: "[::]:3900"
+      region: "garage"
+      rootDomain: ".s3.garage.tld"
+    web:
+      bindAddr: "[::]:3902"
+      rootDomain: ".web.garage.tld"
+      index: "index.html"
+  admin:
+    apiBindAddr: "[::]:3903"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    memory: 1024Mi
