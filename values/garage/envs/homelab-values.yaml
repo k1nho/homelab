@@ -1,0 +1,25 @@
+garage:
+  s3:
+    api:
+      region: "us-east-1"
+  # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/#db_engine
+  dbEngine: "sqlite"
+
+  # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/#replication_factor
+  replicationFactor: "1"
+
+deployment:
+  replicaCount: 1
+
+persistence:
+  meta:
+    size: 20Gi
+  data:
+    size: 500Gi
+
+ingress:
+  s3:
+    api:
+      enabled: false
+    web:
+      enabled: false
