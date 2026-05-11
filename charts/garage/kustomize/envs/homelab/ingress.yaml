@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: garage-ingress
+spec:
+  defaultBackend:
+    service:
+      name: garage-homelab
+      port:
+        number: 3900
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - garage
