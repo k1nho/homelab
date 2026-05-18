@@ -40,4 +40,12 @@ spec:
       annotations:
         # crd priority
         argocd.argoproj.io/sync-wave: "-100"
+
+    syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true
+      automated:
+        prune: true
+        selfHeal: true
     {{- end }}
