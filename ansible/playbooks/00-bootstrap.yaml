@@ -3,4 +3,4 @@
   become: false
 
   tasks:
-    - include_tasks: ../tasks/bootstrap.yml
+    - include_tasks: ../tasks/bootstrap.yaml

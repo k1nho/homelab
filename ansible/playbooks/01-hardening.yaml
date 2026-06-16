@@ -3,4 +3,4 @@
   become: true
 
   tasks:
-    - include_tasks: ../tasks/hardening.yml
+    - include_tasks: ../tasks/hardening.yaml
