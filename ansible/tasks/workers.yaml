@@ -1,6 +1,6 @@
 - name: Create agent config
   template:
-    src: k3sagent.yaml.j2
+    src: ../templates/k3sagent.yaml.j2
     dest: /root/k3sagent.yaml
 
 - name: Install K3s agent

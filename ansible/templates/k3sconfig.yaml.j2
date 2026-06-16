@@ -7,3 +7,6 @@ disable:
   - servicelb
 
 cluster-init: true
+
+tls-san:
+  - {{ ansible_host }} 

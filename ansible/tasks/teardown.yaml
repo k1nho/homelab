@@ -1,0 +1,28 @@
+---
+- name: Check if k3s server uninstall exists
+  stat:
+    path: /usr/local/bin/k3s-uninstall.sh
+  register: k3s_server_uninstall
+
+- name: Uninstall k3s server
+  command: /usr/local/bin/k3s-uninstall.sh
+  when: k3s_server_uninstall.stat.exists
+  register: uninstall_result
+
+- name: Check if k3s agent uninstall exists
+  stat:
+    path: /usr/local/bin/k3s-agent-uninstall.sh
+  register: k3s_agent_uninstall
+
+- name: Uninstall k3s agent
+  command: /usr/local/bin/k3s-agent-uninstall.sh
+  when: k3s_agent_uninstall.stat.exists
+  register: uninstall_agent_result
+
+- name: Remove leftover k3s directories
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/rancher/k3s
+    - /var/lib/rancher/k3s

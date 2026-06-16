@@ -1,6 +1,6 @@
 - name: Create k3s config
   template:
-    src: k3sconfig.yaml
+    src: ../templates/k3sconfig.yaml.j2
     dest: /root/k3sconfig.yaml
 
 - name: Install K3s server

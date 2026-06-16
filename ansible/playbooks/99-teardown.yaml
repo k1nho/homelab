@@ -1,0 +1,14 @@
+---
+- name: Remove K3s from servers
+  hosts: k3s_server
+  become: true
+
+  tasks:
+    - include_tasks: ../tasks/teardown.yaml
+
+- name: Remove K3s from workers
+  hosts: k3s_workers
+  become: true
+
+  tasks:
+    - include_tasks: ../tasks/teardown.yaml
