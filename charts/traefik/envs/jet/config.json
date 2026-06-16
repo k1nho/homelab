@@ -1,0 +1,8 @@
+{
+  "namespace": "traefik",
+  "repoURL": "https://traefik.github.io/charts",
+  "chart": "traefik",
+  "targetRevision": "40.2.0",
+  "env": "jet",
+  "priority": "0"
+}

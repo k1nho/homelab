@@ -1,0 +1,3 @@
+providers:
+  kubernetesCRD:
+    allowCrossNamespace: true # reference middleware from other namespace
