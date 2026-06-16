@@ -1,18 +1,23 @@
-# The homelab apps appset installs all the kustomize apps defined under envs/homelab
+# The kustomize apps appset installs all the kustomize apps
+# Uses cluster labels to determine the configuration
+# i.e environment: homelab -> kustomize-apps/*/envs/homelab
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: homelab-apps-appset
+  name: kustomize-apps-appset
   namespace: argocd
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-    - git:
-        repoURL: https://github.com/k1nho/homelab.git
-        revision: HEAD
-        directories:
-          - path: kustomize-apps/*/envs/homelab
+    - matrix:
+        generators:
+          - clusters: {}
+          - git:
+              repoURL: https://github.com/k1nho/homelab.git
+              revision: HEAD
+              directories:
+                - path: kustomize-apps/*/envs/{{.metadata.labels.environment}}
   template:
     metadata:
       name: "{{index .path.segments 1}}-{{index .path.segments 3}}"
