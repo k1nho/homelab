@@ -1,0 +1,12 @@
+- name: Update apt cache
+  apt:
+    update_cache: true
+
+- name: Install dependencies
+  apt:
+    name:
+      - curl
+      - wget
+      - apt-transport-https
+      - ca-certificates
+    state: present

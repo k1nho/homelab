@@ -1,0 +1,4 @@
+---
+- import_playbook: playbooks/00-bootstrap.yml
+- import_playbook: playbooks/01-hardening.yml
+- import_playbook: playbooks/02-k3s.yml

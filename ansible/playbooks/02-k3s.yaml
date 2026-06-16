@@ -1,0 +1,22 @@
+---
+- hosts: k3s_cluster
+  become: true
+  tasks:
+    - include_tasks: ../tasks/apt.yml
+
+- hosts: k3s_server
+  become: true
+  tasks:
+    - include_tasks: ../tasks/server.yml
+
+- hosts: k3s_workers
+  become: true
+  tasks:
+    - include_tasks: ../tasks/workers.yml
+
+- hosts: k3s_server
+  become: true
+  tasks:
+    - include_tasks: ../tasks/helm.yml
+    - include_tasks: ../tasks/cilium.yml
+    - include_tasks: ../tasks/kubeconfig.yml

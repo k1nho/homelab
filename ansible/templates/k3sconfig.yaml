@@ -1,0 +1,9 @@
+flannel-backend: "none"
+disable-kube-proxy: true
+disable-network-policy: true
+
+disable:
+  - traefik
+  - servicelb
+
+cluster-init: true

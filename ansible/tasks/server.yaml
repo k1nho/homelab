@@ -1,0 +1,27 @@
+- name: Create k3s config
+  template:
+    src: k3sconfig.yaml
+    dest: /root/k3sconfig.yaml
+
+- name: Install K3s server
+  shell: |
+    curl -sfL https://get.k3s.io | \
+    INSTALL_K3S_EXEC="server" \
+    sh -s - --config=/root/k3sconfig.yaml
+  args:
+    creates: /etc/systemd/system/k3s.service
+
+- name: Wait for API
+  wait_for:
+    host: "{{ server_ip }}"
+    port: "{{ server_port }}"
+    timeout: 120
+
+- name: Read cluster token
+  slurp:
+    src: /var/lib/rancher/k3s/server/token
+  register: k3s_token_raw
+
+- name: Store token
+  set_fact:
+    k3s_token: "{{ k3s_token_raw.content | b64decode | trim }}"
