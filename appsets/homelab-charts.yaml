@@ -8,11 +8,14 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-    - git:
-        repoURL: https://github.com/k1nho/homelab.git
-        revision: HEAD
-        files:
-          - path: "charts/*/envs/homelab/config.json"
+    - matrix:
+        generators:
+          - clusters: {}
+          - git:
+              repoURL: https://github.com/k1nho/homelab.git
+              revision: HEAD
+              files:
+                - path: "charts/*/envs/{{.metadata.labels.environment}}/config.json"
   template:
     metadata:
       name: "{{index .path.segments 1}}-{{.env}}"
@@ -22,7 +25,7 @@ spec:
       project: default
 
       destination:
-        server: https://kubernetes.default.svc
+        server: "{{.server}}"
         namespace: "{{.namespace}}"
 
       # Sync policy with optional ServerSideApply
