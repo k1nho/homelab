@@ -1,8 +1,10 @@
-# The homelab charts appset installs all the helm charts defined under envs/homelab
+# The charts appset installs all the helm charts
+## Uses cluster labels to determine the configuration
+# i.e environment: homelab -> charts/*/envs/homelab/config.json
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: homelab-charts-appset
+  name: helm-charts-appset
   namespace: argocd
 spec:
   goTemplate: true
