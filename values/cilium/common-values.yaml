@@ -57,10 +57,10 @@ k8sClientRateLimit:
 hubble:
   # -- Enable Hubble Relay (requires hubble.enabled=true)
   relay:
-    enabled: true
+    enabled: false
   # -- Whether to enable the Hubble UI.
   ui:
-    enabled: true
+    enabled: false
 
 # IP masquerading
 ipMasqAgent:
@@ -71,12 +71,6 @@ bpf:
   # -- (bool) Enable native IP masquerade support in eBPF
   # @default -- `false`
   masquerade: true
-
-# TAILSCALE compatibility when running kube-proxy replacement mode
-# Necessary for exposing kubernetes services
-# ref: https://tailscale.com/kb/1236/kubernetes-operator#cilium-in-kube-proxy-replacement-mode
-socketLB:
-  hostNamespaceOnly: true
 
 # Virtual Extensible Local Area Network Configuration
 
