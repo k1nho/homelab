@@ -56,8 +56,8 @@ spec:
           targetRevision: "{{.targetRevision}}"
           helm:
             valueFiles:
-              - "$values/values/{{index .path.segments 1}}/common-values.yaml"
-              - "$values/values/{{index .path.segments 1}}/envs/{{.env}}-values.yaml"
+              - "$values/charts/{{index .path.segments 1}}/values/common-values.yaml"
+              - "$values/charts/{{index .path.segments 1}}/values/envs/{{.env}}-values.yaml"
 
         # Optional extra values
         - repoURL: "https://github.com/k1nho/homelab.git"
