@@ -1,7 +1,7 @@
 ![Kinho's Homelab Cover](./docs/assets/homelab_series_cover.png)
 
-Welcome! This is my personal, continuously evolving **Kubernetes cluster** designed to learn and experiment with multiple cloud-native technologies.
-Along the way, I self-host multiple services, including my **tech blog**, **Jellyfin media server**, **Linkding bookmark manager**, and many more.
+Welcome! This is my personal **Kubernetes homelab**, built as a platform for learning, experimenting, and refining cloud-native technologies.
+Using a GitOps-driven approach, it hosts and manages the applications and services that support my day-to-day self-hosted workloads listed in the [Applications](#applications) section.
 
 ---
 
@@ -11,22 +11,36 @@ The progress of the homelab is documented in a **storytelling format** through m
 
 ---
 
-# The Homelab Documentation
-
-The [documentation](https://kincodes.com/homelab/) contains an describes the architecture, components, and their purpose within the **k3s cluster** for the homelab series. It complements the blog by providing more details about configurations, and guides that might be skipped in the storytelling posts.
-
----
-
 # Architecture
 
-This repository uses the app of apps pattern to trigger the installation all the Kubernetes resources with ArgoCD. Moreover, it uses a promotion system structure based on environment hierarchy.
+This repository uses the app of apps pattern to trigger the installation all the Kubernetes resources with ArgoCD. Moreover, it uses a three tier structure based on environment hierarchy (homelab, gke, eks, lke, jet).
+
+                    +---------------------------+
+                    |         App of Apps       | Tier 3
+                    |         (root.yaml)       |
+                    +---------------------------+
+                                   |
+                                   v
+                    +---------------------------+
+                    |       ApplicationSet      | Tier 2
+                    |         (appsets)         |
+                    +---------------------------+
+                                   |
+                                   | creates Argo CD
+                                   | Applications from
+                                   v
+                    +---------------------------+
+                    |     Helm / Kustomize      | Tier 1
+                    |        Manifests          |
+                    +---------------------------+
 
 - `root.yaml`: The entrypoint defines a bootstrap application that points to all the homelab ApplicationSets
 - `appsets`: Contains all the ApplicationSet Custom Resource to apply
 - `kustomize-apps`: Contains all the applications that are installed via [Kustomize](https://kustomize.io/)
 - `charts`: Contains all the applications that are installed via [Helm Charts](https://helm.sh/)
-- `values`: Contains all the custom values to apply to the helm charts based on the environment hierarchy
+- `standby`: Apps archive, serves as the uninstall place for apps.
 - `docs`: The homelab documentation
+- `charts/<app>/envs, kustomize-apps/<app>/envs`: Subdirectory that controls the installation of a tier 1 into the corresponding k8s environment.
 
 ---
 
@@ -47,13 +61,14 @@ Applications running in the cluster are split by the installation strategy which
 
 ## ☸️ Helm
 
-|                                                                                                 | App                                                                                                     | Description                                                                                         | Chart                                                                                               | Values                                                                                                           |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/cilium.png" width="24">                 | [**Cilium**](https://cilium.io/)                                                                        | Cilium is the CNI of choice for the cluster                                                         | [Chart](https://github.com/cilium/cilium/tree/v1.18.4/install/kubernetes/cilium)                    | [Values](https://github.com/cilium/cilium/blob/v0.18.4/install/kubernetes/cilium/values.yaml)                    |
-| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/postgresql.png" width="24">             | [**Cloud Native PG**](https://cloudnative-pg.io/)                                                       | Kubernetes operator to manage the full lifecycle of a PostgreSQL database cluster                   | [Chart](https://github.com/cloudnative-pg/charts/tree/main/charts/cloudnative-pg)                   | [Values](https://github.com/cloudnative-pg/charts/blob/main/charts/cloudnative-pg/values.yaml)                   |
-| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/infisical.png" width="24">              | [**Infisical Secrets Operator**](https://infisical.com/docs/integrations/platforms/kubernetes/overview) | Implements the external secret operator pattern (ESO) to manage Kubernetes secrets in the cluster   | [Chart](github.com/Infisical/kubernetes-operator/tree/main/helm-charts/secrets-operator)            | [Values](https://github.com/Infisical/kubernetes-operator/blob/main/helm-charts/secrets-operator/values.yaml)    |
-| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/prometheus.png" width="24">             | [**Kube-Prometheus Stack**](https://prometheus-operator.dev/kube-prometheus/kube/access-ui/)            | Monitoring stack with Prometheus and Grafana                                                        | [Chart](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) | [Values](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml) |
-| <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/opencost.png" width="24"> | [**OpenCost**](https://opencost.io/)                                                                    | Cost monitoring stack                                                                               | [Chart](https://github.com/opencost/opencost-helm-chart/tree/main/charts/opencost)                  | [Values](https://github.com/opencost/opencost-helm-chart/blob/main/charts/opencost/values.yaml)                  |
-| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/tailscale.png" width="24">              | [**Tailscale Operator**](https://tailscale.com/docs/features/kubernetes-operator)                       | Tailscale kubernetes operator (enable ingress to access services on all authorized tailnet devices) | [Chart](https://github.com/tailscale/tailscale/tree/main/cmd/k8s-operator/deploy/chart)             | [Values](https://github.com/tailscale/tailscale/blob/main/cmd/k8s-operator/deploy/chart/values.yaml)             |
+|                                                                                                 | App                                                                                                                   | Description                                                                                         | Chart                                                                                               | Values                                                                                                           |
+| ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/cilium.png" width="24">                 | [**Cilium**](https://cilium.io/)                                                                                      | Cilium is the CNI of choice for the cluster                                                         | [Chart](https://github.com/cilium/cilium/tree/v1.18.4/install/kubernetes/cilium)                    | [Values](https://github.com/cilium/cilium/blob/v0.18.4/install/kubernetes/cilium/values.yaml)                    |
+| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/postgresql.png" width="24">             | [**Cloud Native PG**](https://cloudnative-pg.io/)                                                                     | Kubernetes operator to manage the full lifecycle of a PostgreSQL database cluster                   | [Chart](https://github.com/cloudnative-pg/charts/tree/main/charts/cloudnative-pg)                   | [Values](https://github.com/cloudnative-pg/charts/blob/main/charts/cloudnative-pg/values.yaml)                   |
+| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/infisical.png" width="24">              | [**Infisical Secrets Operator**](https://infisical.com/docs/integrations/platforms/kubernetes/overview)               | Implements the external secret operator pattern (ESO) to manage Kubernetes secrets in the cluster   | [Chart](github.com/Infisical/kubernetes-operator/tree/main/helm-charts/secrets-operator)            | [Values](https://github.com/Infisical/kubernetes-operator/blob/main/helm-charts/secrets-operator/values.yaml)    |
+| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/prometheus.png" width="24">             | [**Kube-Prometheus Stack**](https://prometheus-operator.dev/kube-prometheus/kube/access-ui/)                          | Monitoring stack with Prometheus and Grafana                                                        | [Chart](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) | [Values](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml) |
+| <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/opencost.png" width="24"> | [**OpenCost**](https://opencost.io/)                                                                                  | Cost monitoring stack                                                                               | [Chart](https://github.com/opencost/opencost-helm-chart/tree/main/charts/opencost)                  | [Values](https://github.com/opencost/opencost-helm-chart/blob/main/charts/opencost/values.yaml)                  |
+| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/tailscale.png" width="24">              | [**Tailscale Operator**](https://tailscale.com/docs/features/kubernetes-operator)                                     | Tailscale kubernetes operator (enable ingress to access services on all authorized tailnet devices) | [Chart](https://github.com/tailscale/tailscale/tree/main/cmd/k8s-operator/deploy/chart)             | [Values](https://github.com/tailscale/tailscale/blob/main/cmd/k8s-operator/deploy/chart/values.yaml)             |
+| <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/traefik.png" width="24">                | [**Traefik**](https://doc.traefik.io/traefik/getting-started/kubernetes/#getting-started-with-kubernetes-and-traefik) | Traefik serves as an ingress controller for cloud based clusters                                    | [Chart](https://github.com/traefik/traefik-helm-chart/tree/master/traefik)                          | [Values](https://github.com/traefik/traefik-helm-chart/blob/master/traefik/VALUES.md)                            |
 
 ---
