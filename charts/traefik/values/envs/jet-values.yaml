@@ -20,7 +20,7 @@ updateStrategy:
 # dashboard configuration
 api:
   dashboard: true
-  insecure: false
+  insecure: true
 
 # Ports configuration (set 80, 443 if running in host network mode)
 ports:
