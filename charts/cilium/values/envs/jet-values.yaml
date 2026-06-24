@@ -8,7 +8,7 @@ ipam:
 # Specify which network interfaces can run the eBPF datapath
 devices: "enp1s0"
 
-k8sServiceHost: ""
+k8sServiceHost: "149.165.170.232"
 k8sServicePort: 6443
 
 # Cilium Operator Configuration

@@ -1,3 +1,16 @@
+deployment:
+  kind: DaemonSet
+
+# -- If hostNetwork is true, runs traefik in the host network namespace
+# To prevent unschedulable pods due to port collisions, if hostNetwork=true
+# and replicas>1, a pod anti-affinity is recommended and will be set if the
+# affinity is left as default.
+hostNetwork: true
+
+service:
+  spec:
+    type: ClusterIP
+
 providers:
   kubernetesCRD:
     allowCrossNamespace: true # reference middleware from other namespace
