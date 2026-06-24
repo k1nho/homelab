@@ -43,8 +43,6 @@ ports:
     expose:
       default: true
     exposedPort: 443
-    tls:
-      enabled: true
 
 providers:
   kubernetesCRD:
