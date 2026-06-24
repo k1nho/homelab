@@ -8,7 +8,7 @@ spec:
     - traefik
   routes:
     - match: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
-      middleware:
+      middlewares:
         - name: basic-auth-middleware
           namespace: traefik
       kind: Rule
