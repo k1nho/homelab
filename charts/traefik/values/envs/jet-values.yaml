@@ -11,6 +11,11 @@ service:
   spec:
     type: ClusterIP
 
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1
+
 providers:
   kubernetesCRD:
     allowCrossNamespace: true # reference middleware from other namespace
