@@ -3,13 +3,15 @@
     helm repo add cilium https://helm.cilium.io
     helm repo update
 
+- name: Render Cilium values
+  template:
+    src: ../templates/cilium-values.yaml.j2
+    dest: /tmp/cilium-values.yaml
+
 - name: Install Cilium
   shell: |
     KUBECONFIG=/etc/rancher/k3s/k3s.yaml \
     helm upgrade --install cilium cilium/cilium \
       --namespace kube-system \
       --version {{ cilium_version }} \
-      --set k8sServiceHost={{ server_ip }} \
-      --set k8sServicePort={{ server_port }} \
-      --set kubeProxyReplacement=true \
-      --set ipam.operator.clusterPoolIPv4PodCIDRList="{{ cluster_cidr }}"
+      --values /tmp/cilium-values.yaml

@@ -8,5 +8,7 @@ disable:
 
 cluster-init: true
 
+node-external-ip: {{ ansible_host }}
+
 tls-san:
   - {{ ansible_host }} 
