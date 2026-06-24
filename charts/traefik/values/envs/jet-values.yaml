@@ -32,22 +32,18 @@ ports:
     exposedPort: 8080
 
   web:
-    port: 80 # host network mode
+    port: 8000
+    hostPort: 80 # host network mode
     expose:
       default: true
     exposedPort: 80
 
   websecure:
-    port: 443 # host network mode
+    port: 8443
+    hostPort: 443 # host network mode
     expose:
       default: true
     exposedPort: 443
-
-securityContext:
-  capabilities:
-    add:
-      - NET_BIND_SERVICE
-  readOnlyRootFilesystem: true
 
 providers:
   kubernetesCRD:
