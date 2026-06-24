@@ -5,7 +5,7 @@ deployment:
 # To prevent unschedulable pods due to port collisions, if hostNetwork=true
 # and replicas>1, a pod anti-affinity is recommended and will be set if the
 # affinity is left as default.
-hostNetwork: false
+hostNetwork: true
 
 service:
   spec:
@@ -32,14 +32,12 @@ ports:
 
   web:
     port: 8000
-    hostPort: 80
     expose:
       default: true
     exposedPort: 80
 
   websecure:
     port: 8443
-    hostPort: 443
     expose:
       default: true
     exposedPort: 443
