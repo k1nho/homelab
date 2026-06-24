@@ -43,6 +43,12 @@ ports:
       default: true
     exposedPort: 443
 
+securityContext:
+  capabilities:
+    add:
+      - NET_BIND_SERVICE
+  readOnlyRootFilesystem: true
+
 providers:
   kubernetesCRD:
     allowCrossNamespace: true # reference middleware from other namespace
