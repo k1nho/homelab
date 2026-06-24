@@ -17,6 +17,32 @@ updateStrategy:
     maxUnavailable: 1
     maxSurge: 0
 
+# dashboard configuration
+api:
+  dashboard: true
+  insecure: false
+  disableDashboardAd:
+
+# Ports configuration (set 80, 443 if running in host network mode)
+ports:
+  traefik:
+    port: 8080
+    expose:
+      default: false
+    exposedPort: 8080
+
+  web:
+    port: 80 # host network mode
+    expose:
+      default: true
+    exposedPort: 80
+
+  websecure:
+    port: 443 # host network mode
+    expose:
+      default: true
+    exposedPort: 443
+
 providers:
   kubernetesCRD:
     allowCrossNamespace: true # reference middleware from other namespace
