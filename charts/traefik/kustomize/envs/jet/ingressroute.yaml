@@ -9,6 +9,8 @@ spec:
   routes:
     - match: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
       middlewares:
+        - name: ip-allowlist-local
+          namespace: traefik
         - name: basic-auth-middleware
           namespace: traefik
       kind: Rule
