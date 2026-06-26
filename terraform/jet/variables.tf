@@ -6,6 +6,11 @@ variable "worker_node_count" {
   default = "2"
 }
 
+# active, shutoff, paused, shelved_offloaded
+variable "power_state" {
+  default = "active"
+}
+
 variable "public_key" {
   default = "nsdfkey"
 }

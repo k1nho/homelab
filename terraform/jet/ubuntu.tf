@@ -10,6 +10,7 @@ resource "openstack_compute_instance_v2" "ubuntu24_quad" {
   flavor_id       = 3
   key_pair        = var.public_key 
   security_groups = ["default", "k8sciliumnode"]
+  power_state = var.power_state
 
   metadata = {
     node = "K3s master node"
@@ -30,6 +31,7 @@ resource "openstack_compute_instance_v2" "ubuntu24_sm" {
   flavor_id       = 2
   key_pair        = var.public_key 
   security_groups = ["default", "k8sciliumnode"]
+  power_state = var.power_state
 
   metadata = {
     node = "K3s worker node"
