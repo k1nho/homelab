@@ -3,7 +3,7 @@ deployment:
 
 service:
   spec:
-    type: ClusterIP #(ClusterIP, if hostNetwork true)
+    type: LoadBalancer #(ClusterIP, if hostNetwork true)
 
 # -- If hostNetwork is true, runs traefik in the host network namespace
 # To prevent unschedulable pods due to port collisions, if hostNetwork=true
