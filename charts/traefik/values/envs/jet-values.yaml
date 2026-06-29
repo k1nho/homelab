@@ -1,21 +1,21 @@
 deployment:
-  kind: DaemonSet
+  kind: Deployment # (DaemonSet, if hostNetwork true)
+
+service:
+  spec:
+    type: ClusterIP #(ClusterIP, if hostNetwork true)
 
 # -- If hostNetwork is true, runs traefik in the host network namespace
 # To prevent unschedulable pods due to port collisions, if hostNetwork=true
 # and replicas>1, a pod anti-affinity is recommended and will be set if the
 # affinity is left as default.
-hostNetwork: true
+# hostNetwork: true
 
-service:
-  spec:
-    type: ClusterIP
-
-updateStrategy:
-  type: RollingUpdate
-  rollingUpdate:
-    maxUnavailable: 1
-    maxSurge: 0
+# updateStrategy:
+#   type: RollingUpdate
+#   rollingUpdate:
+#     maxUnavailable: 1
+#     maxSurge: 0
 
 # dashboard configuration
 api:
