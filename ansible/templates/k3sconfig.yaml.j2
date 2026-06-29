@@ -1,6 +1,10 @@
 flannel-backend: "none"
 disable-kube-proxy: true
 disable-network-policy: true
+disable-cloud-controller: true
+
+kubelet-arg:
+  - cloud-provider=external
 
 disable:
   - traefik
