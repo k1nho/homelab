@@ -5,7 +5,7 @@
 resource "openstack_compute_instance_v2" "ubuntu24_quad" {
   count = var.master_node_count
 
-  name            = "kmaster${count.index + 1}"
+  name            = "${var.master_node_name_prefix}${count.index + 1}"
   image_id        = var.image_id
   flavor_id       = 3
   key_pair        = var.public_key 
@@ -26,7 +26,7 @@ resource "openstack_compute_instance_v2" "ubuntu24_quad" {
 resource "openstack_compute_instance_v2" "ubuntu24_sm" {
   count = var.worker_node_count
 
-  name            = "kworker${count.index + 1}"
+  name            = "${var.worker_node_name_prefix}${count.index + 1}"
   image_id        = var.image_id
   flavor_id       = 2
   key_pair        = var.public_key 

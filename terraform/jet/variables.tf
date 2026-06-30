@@ -6,6 +6,14 @@ variable "worker_node_count" {
   default = "2"
 }
 
+variable "master_node_name_prefix" {
+  default = "kmaster"
+}
+
+variable "worker_node_name_prefix" {
+  default = "kworker"
+}
+
 # active, shutoff, paused, shelved_offloaded
 variable "power_state" {
   default = "active"
@@ -23,3 +31,5 @@ variable "image_id" {
 variable "private_network" {
   default = "auto_allocated_network"
 }
+
+
