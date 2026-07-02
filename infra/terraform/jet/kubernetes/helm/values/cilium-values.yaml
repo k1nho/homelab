@@ -1,0 +1,52 @@
+# Configure as a kube-proxy replacement
+kubeProxyReplacement: "true"
+
+# IP Address Management Mode
+ipam:
+  mode: kubernetes
+
+# Specify which network interfaces can run the eBPF datapath
+devices: "enp1s0"
+
+# Kubernetes API Server
+k8sServiceHost: "${server_ip}"
+k8sServicePort: "${server_port}"
+
+# Cilium Operator Configuration
+operator:
+  replicas: 1
+
+gatewayAPI:
+  enabled: true
+  hostNetwork:
+    enabled: false
+
+# L2 Announcements Configuration
+l2announcements:
+  enabled: true
+
+# Node Ipam
+nodeIPAM:
+  enabled: true
+
+# k8 Client Rate Limit Configuration
+k8sClientRateLimit:
+  qps: 50
+  burst: 200
+
+# Hubble Configuration (observability)
+hubble:
+  relay:
+    enabled: false
+  ui:
+    enabled: false
+
+bpf:
+  masquerade: true
+
+# Tunneling protocol (vxlan encapsulates pod traffic with node IPs,
+# needed because OpenStack port security drops pod IPs as source)
+tunnelProtocol: "vxlan"
+
+# Enables masquerading of IPv4 traffic leaving the node from endpoints
+enableIPv4Masquerade: true
