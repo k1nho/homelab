@@ -11,10 +11,11 @@ variable "os_public_key" {
   type        = string
 }
 
+# active, shelved_offloaded, pause, shutoff
 variable "node_power_state" {
   description = "The node state after spawn"
   type        = string
-  default     = "shelved_offloaded"
+  default     = "active"
 }
 
 
