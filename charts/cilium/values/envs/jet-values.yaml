@@ -24,6 +24,10 @@ gatewayAPI:
 l2announcements:
   enabled: true
 
+# -- defaultLBServiceIPAM indicates the default LoadBalancer Service IPAM when
+# no LoadBalancer class is set. Applicable values: lbipam, nodeipam, none
+defaultLBServiceIPAM: nodeipam
+
 # Node Ipam
 nodeIPAM:
   enabled: true
