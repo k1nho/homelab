@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ../../base
   - secrets.yaml
-  - ingressroute.yaml
+  # - ingressroute.yaml
