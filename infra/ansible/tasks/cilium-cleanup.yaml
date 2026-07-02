@@ -1,0 +1,56 @@
+---
+- name: Remove Cilium CNI config
+  file:
+    path: /etc/cni/net.d/05-cilium.conf
+    state: absent
+  failed_when: false
+
+- name: Unmount Cilium BPF filesystem
+  shell: |
+    mountpoint -q /sys/fs/bpf && umount /sys/fs/bpf || true
+  failed_when: false
+
+- name: Delete Cilium virtual interfaces
+  command: ip link delete {{ item }}
+  loop:
+    - cilium_host
+    - cilium_net
+    - cilium_vxlan
+    - cilium_health
+  failed_when: false
+
+- name: Delete Cilium lxc interfaces
+  shell: |
+    for iface in $(ip -o link show | grep -o 'lxc[^:@]*'); do
+      ip link delete "$iface" 2>/dev/null || true
+    done
+  failed_when: false
+
+- name: Remove Cilium iptables rules
+  shell: |
+    iptables-save 2>/dev/null | grep -iv cilium | iptables-restore 2>/dev/null || true
+    ip6tables-save 2>/dev/null | grep -iv cilium | ip6tables-restore 2>/dev/null || true
+  failed_when: false
+
+- name: Remove Cilium routes (cilium_* devices)
+  shell: |
+    ip route show | awk '/dev cilium_/{print}' | while IFS= read -r r; do
+      ip route del $r 2>/dev/null || true
+    done
+    ip route show | awk '/dev lxc/{print}' | while IFS= read -r r; do
+      ip route del $r 2>/dev/null || true
+    done
+  failed_when: false
+
+- name: Remove auto-direct-node-routes (pod CIDRs via enp1s0)
+  shell: |
+    ip route show | awk '/10\.42\./ && /via / && /dev enp1s0/{print}' | while IFS= read -r r; do
+      ip route del $r 2>/dev/null || true
+    done
+  failed_when: false
+
+- name: Remove Cilium state directory
+  file:
+    path: /var/run/cilium
+    state: absent
+  failed_when: false
