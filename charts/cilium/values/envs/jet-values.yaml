@@ -22,15 +22,17 @@ gatewayAPI:
 
 # L2 Announcements Configuration
 l2announcements:
-  enabled: true
+  enabled: false
 
 # -- defaultLBServiceIPAM indicates the default LoadBalancer Service IPAM when
 # no LoadBalancer class is set. Applicable values: lbipam, nodeipam, none
-defaultLBServiceIPAM: nodeipam
+# Use nodeipam when running the non-openstack ccm setup to enable Cilium to assign
+# external-ip from the nodes external ips (internal ips will be assigned if it does not find external ip)
+defaultLBServiceIPAM: lbipam
 
-# Node Ipam
+# Node Ipam (enable with defaultLBServiceIPAM: nodeipam)
 nodeIPAM:
-  enabled: true
+  enabled: false
 
 # k8 Client Rate Limit Configuration
 k8sClientRateLimit:
