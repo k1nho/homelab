@@ -5,7 +5,7 @@ metadata:
   namespace: traefik
 spec:
   entryPoints:
-    - traefik
+    - web
   routes:
     - match: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
       middlewares:
