@@ -24,6 +24,10 @@ gatewayAPI:
 l2announcements:
   enabled: true
 
+# Node Ipam
+nodeIPAM:
+  enabled: true
+
 # k8 Client Rate Limit Configuration
 k8sClientRateLimit:
   qps: 50
