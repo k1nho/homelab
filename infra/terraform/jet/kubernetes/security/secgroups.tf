@@ -7,6 +7,28 @@ resource "openstack_networking_secgroup_v2" "k8sciliumnode" {
   description = "k8s node (Cilium CNI)"
 }
 
+resource "openstack_networking_secgroup_v2" "nfs" {
+  name        = "nfs-server"
+  description = "NFS security group"
+}
+
+locals {
+  secgroups = {
+    k8s = openstack_networking_secgroup_v2.k8sciliumnode.id
+    nfs = openstack_networking_secgroup_v2.nfs.id
+  }
+}
+
+resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_nfs_tcp" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 2049
+  port_range_max    = 2049
+  remote_ip_prefix  = data.openstack_networking_subnet_v2.private_subnet.cidr
+  security_group_id = openstack_networking_secgroup_v2.nfs.id
+}
+
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_ciliumudp" {
   description       = "Enable Cilium VXLAN mode via UDP"
   direction         = "ingress"
@@ -19,13 +41,15 @@ resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_ciliumudp" {
 }
 
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_ssh" {
+  for_each = local.secgroups
+
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
   port_range_min    = 22
   port_range_max    = 22
   remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_networking_secgroup_v2.k8sciliumnode.id
+  security_group_id = each.value
 }
 
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_ping" {
