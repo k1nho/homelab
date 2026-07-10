@@ -14,3 +14,8 @@ variable "cilium_version" {
   type    = string
   default = "1.18.0"
 }
+
+variable "argocd_version" {
+  type    = string
+  default = "7.8.0"
+}
