@@ -101,7 +101,7 @@ data:
     - Personal:
         - Blog:
             icon: mdi-post
-            href: https://blog.manakin-koi.ts.net
+            href: https://kincodes.com
             description: My Personal Blog
         - Homepage:
             icon: sh-homepage
