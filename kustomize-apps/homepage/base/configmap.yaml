@@ -92,10 +92,7 @@ data:
             icon: linkding.png
             href: https://linkding.manakin-koi.ts.net 
             description: Bookmark Manager 
-        - Koffan :
-            icon: koffan.png
-            href: https://koffan.manakin-koi.ts.net 
-            description: Shopping List 
+        
 
 
     - Personal:
@@ -108,6 +105,11 @@ data:
             href: https://homepage.manakin-koi.ts.net 
             description: All in one cluster entrypoint
 
+  # - Koffan :
+  #             icon: koffan.png
+  #             href: https://koffan.manakin-koi.ts.net
+  #             description: Shopping List
+  #
   widgets.yaml: |
     - kubernetes:
         cluster:
