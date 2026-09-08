@@ -2,7 +2,7 @@
   "namespace": "garage",
   "repoURL": "https://git.deuxfleurs.fr/Deuxfleurs/garage.git",
   "gitPath": "script/helm/garage",
-  "targetRevision": "0.9.3",
+  "targetRevision": "v2.3.0",
   "env": "homelab",
   "priority": "0",
   "serverSideApply": false
