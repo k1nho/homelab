@@ -1,0 +1,17 @@
+server:
+  ingress:
+    enabled: false
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      selector:
+        release: kube-prometheus-stack-homelab
+
+worker:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      selector:
+        release: kube-prometheus-stack-homelab
