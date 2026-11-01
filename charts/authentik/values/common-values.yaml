@@ -5,7 +5,7 @@ global:
         secretKeyRef:
           name: authentik-secret-key
           key: AUTHENTIK_SECRET_KEY
-    - name: AUTHENTIK_POSTGRESQL__PASSWORD
+    - name: AUTHENTIK_POSTGRESQL__USER
       valueFrom:
         secretKeyRef:
           name: authentik-db-user-credentials
