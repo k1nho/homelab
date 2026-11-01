@@ -1,0 +1,44 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: authentik-db
+spec:
+  instances: 3
+  storage:
+    # storageClass: "local-path"
+    size: 1Gi
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.3
+
+  # Monitoring
+  monitoring:
+    enablePodMonitor: true
+
+  # Bootstrap DB
+  bootstrap:
+    initdb:
+      database: authentik
+      owner: k1nho
+      secret:
+        name: authentik-db-user-credentials
+
+  # Backup to object storage
+  # backup:
+  #   barmanObjectStore:
+  #     destinationPath: s3://authentik/backups/
+  #     endpointURL: http://garage-homelab.garage.svc.cluster.local:3900
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: authentik-backup-creds
+  #         key: AWS_ACCESS_KEY_ID
+  #       secretAccessKey:
+  #         name: authentik-backup-creds
+  #         key: AWS_SECRET_ACCESS_KEY
+  #     wal:
+  #       compression: gzip
+  #     data:
+  #       compression: gzip
+  #       encryption: AES256
+  #       immediateCheckpoint: false
+  #       jobs: 2
+  #   retentionPolicy: "30d"
