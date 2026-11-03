@@ -5,3 +5,4 @@ resources:
   - ../../base
   - db.yaml
   - secrets.yaml
+  - ingress.yaml

@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: authentik-ingress
+spec:
+  defaultBackend:
+    service:
+      name: authentik-homelab-server
+      port:
+        number: 443
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - auth
