@@ -2,6 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: authentik-ingress
+  annotations:
+    # enable MagicDNS resolution to work within the cluster
+    tailscale.com/experimental-forward-cluster-traffic-via-ingress: "true"
+
 spec:
   defaultBackend:
     service:
