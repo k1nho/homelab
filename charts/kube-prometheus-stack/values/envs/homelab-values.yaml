@@ -32,6 +32,9 @@ grafana:
 
   # Grafana authentication setup
   grafana.ini:
+    server:
+      domain: "grafana.manakin-koi.ts.net"
+      root_url: "https://grafana.manakin-koi.ts.net/"
     auth:
       signout_redirect_url: "https://auth.manakin-koi.ts.net/application/o/grafana/end-session/"
       oauth_auto_login: true
