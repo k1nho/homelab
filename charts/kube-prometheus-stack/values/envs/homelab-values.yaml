@@ -30,6 +30,30 @@ grafana:
       - ReadWriteOnce
     size: 8Gi
 
+  # Grafana authentication setup
+  grafana.ini:
+    auth:
+      signout_redirect_url: "https://auth.manakin-koi.ts.net/application/o/grafana/end-session/"
+      oauth_auto_login: true
+    auth.generic_oauth:
+      name: authentik
+      enabled: true
+      client_id: "$__file{/etc/secrets/auth_generic_oauth/client_id}"
+      client_secret: "$__file{/etc/secrets/auth_generic_oauth/client_secret}"
+      scopes: "openid profile email entitlements"
+      auth_url: "https://auth.manakin-koi.ts.net/application/o/authorize/"
+      token_url: "https://auth.manakin-koi.ts.net/application/o/token/"
+      api_url: "https://auth.manakin-koi.ts.net/application/o/userinfo/"
+      # Optionally map user entitlements to Grafana roles
+      role_attribute_path: contains(entitlements[*], 'Grafana Admins') && 'Admin' || contains(entitlements[*], 'Grafana Editors') && 'Editor' || 'Viewer'
+
+  extraSecretMounts:
+    - name: auth-generic-oauth-secret-mount
+      secretName: oauth-secret
+      defaultMode: 0440
+      mountPath: /etc/secrets/auth_generic_oauth
+      readOnly: true
+
 alertmanager:
   alertmanagerSpec:
     storage:
