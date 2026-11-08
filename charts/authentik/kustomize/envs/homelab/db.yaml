@@ -23,22 +23,22 @@ spec:
         name: authentik-db-user-credentials
 
   # Backup to object storage
-  # backup:
-  #   barmanObjectStore:
-  #     destinationPath: s3://authentik/backups/
-  #     endpointURL: http://garage-homelab.garage.svc.cluster.local:3900
-  #     s3Credentials:
-  #       accessKeyId:
-  #         name: authentik-backup-creds
-  #         key: AWS_ACCESS_KEY_ID
-  #       secretAccessKey:
-  #         name: authentik-backup-creds
-  #         key: AWS_SECRET_ACCESS_KEY
-  #     wal:
-  #       compression: gzip
-  #     data:
-  #       compression: gzip
-  #       encryption: AES256
-  #       immediateCheckpoint: false
-  #       jobs: 2
-  #   retentionPolicy: "30d"
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://authentik/backups/
+      endpointURL: http://garage-homelab.garage.svc.cluster.local:3900
+      s3Credentials:
+        accessKeyId:
+          name: authentik-backup-creds
+          key: AWS_ACCESS_KEY_ID
+        secretAccessKey:
+          name: authentik-backup-creds
+          key: AWS_SECRET_ACCESS_KEY
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+        encryption: AES256
+        immediateCheckpoint: false
+        jobs: 2
+    retentionPolicy: "30d"
