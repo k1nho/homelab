@@ -60,9 +60,13 @@ data:
             icon: argo-cd.png
             href: https://argo.manakin-koi.ts.net
             description: Argo CD Server (GitOps)
+        - Authentik:
+            icon: authentik.png 
+            href: https://auth.manakin-koi.ts.net
+            description: Identity and SSO
         - Cilium:
             icon: cilium.png
-            href: cilium.io
+            href: https://cilium.io
             description: Container Networking Interface
         - Homelab:
             icon: mdi-home-circle
