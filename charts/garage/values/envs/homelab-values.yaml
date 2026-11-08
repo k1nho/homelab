@@ -8,6 +8,8 @@ garage:
   # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/#replication_factor
   replicationFactor: "1"
 
+  existingRpcSecret: "garage-rpc-secret"
+
 deployment:
   replicaCount: 1
 
